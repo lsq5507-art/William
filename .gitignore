@@ -1,0 +1,19 @@
+# Flutter / Dart (repo root). The app under LittlePaw/ has its own gitignores.
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+**/build/
+
+# Local machine / secrets
+local.properties
+key.properties
+*.env
+.env.*
+**/*.keystore
+**/*.jks
+*.pem
+*.p12
