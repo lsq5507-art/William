@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "little-paw-prod"
+  },
+  "targets": {
+    "little-paw-prod": {
+      "hosting": {
+        "deepsearch-v01": [
+          "deepsearch-v01"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

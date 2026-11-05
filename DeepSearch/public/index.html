@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="DeepSearch — 输入一个公开用户名，查看它出现在哪些公开主页。免账号样例。仅公开资料。不是法律身份认证。Preview · 不会扣款。" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#FAFAF9" />
+  <title>DeepSearch · 查一个公开用户名</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./design-tokens.css" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#handle">跳到搜索</a>
+
+  <header class="nav" role="banner">
+    <a class="nav-brand" href="./">DeepSearch</a>
+    <nav class="nav-links" aria-label="主导航">
+      <a href="#pricing">定价</a>
+      <a href="#faq">帮助</a>
+    </nav>
+    <button class="nav-menu" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="navMobile" id="menuBtn">菜单</button>
+    <div class="nav-mobile-panel" id="navMobile" hidden>
+      <a href="#pricing">定价</a>
+      <a href="#faq">帮助</a>
+      <a href="#how">如何运作</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ★ S-Search: Hero Search must be in first paint -->
+    <section class="hero" aria-labelledby="hero-title" id="lookup">
+      <h1 id="hero-title">查一个公开用户名</h1>
+      <p class="sub">约会安全与陌生人核实。查看同一用户名出现在哪些公开主页。免账号样例。</p>
+
+      <form class="search-cluster" id="searchForm" role="search" aria-label="用户名搜索" novalidate>
+        <label class="sr-only" for="handle">用户名</label>
+        <div class="search-row">
+          <div class="search-field" id="searchField">
+            <span class="prefix" aria-hidden="true">@</span>
+            <input
+              id="handle"
+              name="handle"
+              type="text"
+              inputmode="text"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="用户名"
+              aria-label="用户名"
+              aria-describedby="trustMicro fieldError"
+              aria-invalid="false"
+              maxlength="64"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary" id="searchBtn">搜一下</button>
+        </div>
+        <p class="field-error" id="fieldError" role="alert"></p>
+        <div class="chips" role="group" aria-label="样例用户名">
+          <span class="hint">试一试</span>
+          <button type="button" class="chip" data-handle="elonmusk">elonmusk</button>
+          <button type="button" class="chip" data-handle="nasa">nasa</button>
+          <button type="button" class="chip" data-handle="wikipedia">wikipedia</button>
+        </div>
+        <p class="trust-micro" id="trustMicro">
+          <span>仅公开资料</span><span>非身份认证</span><span>免账号样例</span>
+        </p>
+      </form>
+    </section>
+
+    <!-- Sample strip BELOW fold (ANTI-D01) -->
+    <section class="section section-tight" aria-labelledby="sample-title">
+      <div class="sample-strip">
+        <div class="meta">
+          <strong id="sample-title">样例结果（次级预览）</strong>
+          <span class="badge-sample">样例 ≠ 你的查询</span>
+        </div>
+        <p style="margin:0;font-size:13px;color:var(--ds2-color-ink-tertiary);">
+          点上方试一试可跑通冷静进度与结果形态。样例报告仅用于证明产品形态。
+        </p>
+      </div>
+    </section>
+
+    <!-- Scenario pills · Narrative B -->
+    <section class="section section-tight" aria-labelledby="scene-title">
+      <p class="section-eyebrow" id="scene-title">适用场景</p>
+      <div class="pills" role="group" aria-label="场景">
+        <button type="button" class="pill" aria-pressed="true" data-scene="dating">约会安全</button>
+        <button type="button" class="pill" aria-pressed="false" data-scene="stranger">陌生人核实</button>
+      </div>
+      <p class="pill-copy" id="sceneCopy">见面前往公开足迹，降低信息不对称。</p>
+    </section>
+
+    <!-- Results / progress -->
+    <section class="section" id="results" aria-labelledby="results-title" hidden>
+      <p class="section-eyebrow">探测</p>
+      <h2 id="results-title">结果</h2>
+      <div class="panel" id="resultsPanel">
+        <div class="panel-head">
+          <span class="status" id="scanStatus" data-state="idle">就绪</span>
+          <span class="badge-sample" id="sampleBadge" hidden>样例报告</span>
+        </div>
+        <div class="edu-bar">同名公开主页不能证明法律身份。仅公开资料。</div>
+        <ul class="rows" id="resultRows" aria-live="polite" aria-busy="false"></ul>
+        <div class="panel-actions" id="resultActions" hidden>
+          <button type="button" class="btn btn-primary" id="exportBtn">导出报告</button>
+          <button type="button" class="btn btn-secondary" id="retryBtn">重试</button>
+          <button type="button" class="btn btn-ghost" id="cancelBtn">取消</button>
+          <button type="button" class="btn btn-secondary" id="runMineBtn">开始我的查询</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section" id="how" aria-labelledby="how-title">
+      <p class="section-eyebrow">如何运作</p>
+      <h2 id="how-title">四步，公开且可审阅</h2>
+      <p class="lede">无终端 HUD，无伪实时计数。进度以平台行清晰呈现。</p>
+      <ol class="timeline">
+        <li><strong>粘贴用户名</strong>在首屏巨型搜索框输入 @handle。</li>
+        <li><strong>我们查看公开页面</strong>并行探测可访问主页，不登录第三方。</li>
+        <li><strong>审阅找到 · 未找到 · 不确定</strong>每条状态配文字，不只靠颜色。</li>
+        <li><strong>需要时再选方案</strong>导出或实查进入 Preview 壳 — 不会扣款。</li>
+      </ol>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section" id="pricing" aria-labelledby="pricing-title">
+      <p class="section-eyebrow">方案 · <span class="preview-chip">Preview · 不会扣款</span></p>
+      <h2 id="pricing-title">选择适合你的方案</h2>
+      <p class="lede">占位价格用于漏斗测试。v0.1 无真 Stripe，不会扣款。</p>
+      <div class="pricing-grid">
+        <article class="price-card">
+          <h3 class="name">体验周</h3>
+          <p class="amount">$14.99 <span>/ 首周</span></p>
+          <p class="desc">短周期试探查询（壳）。适合先验证流程。</p>
+          <button type="button" class="btn btn-secondary btn-block price-cta">继续预览</button>
+        </article>
+        <article class="price-card featured">
+          <span class="badge-rec">推荐</span>
+          <h3 class="name">单次查询</h3>
+          <p class="amount">$39.99 <span>/ 次</span></p>
+          <p class="desc">一次完整查询意向（壳）。导出与实查入口语义完整。</p>
+          <button type="button" class="btn btn-primary btn-block price-cta">继续预览</button>
+        </article>
+        <article class="price-card">
+          <h3 class="name">长期通行</h3>
+          <p class="amount">$99.99 <span>/ 买断向</span></p>
+          <p class="desc">买断向占位（壳）。金额上线前由 William 确认。</p>
+          <button type="button" class="btn btn-secondary btn-block price-cta">继续预览</button>
+        </article>
+      </div>
+      <p class="pricing-note">点击任一档后仅提示预览壳，不进入真结账。</p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <p class="section-eyebrow">帮助</p>
+      <h2 id="faq-title">常见问题</h2>
+      <div class="faq">
+        <details class="faq-item" open>
+          <summary>DeepSearch 查什么？</summary>
+          <p>仅可公开访问的用户名主页。我们不登录第三方，不绕过隐私设置。</p>
+        </details>
+        <details class="faq-item">
+          <summary>「找到」等于身份认证吗？</summary>
+          <p>不等于。同名只是线索，请自行核实每个链接。</p>
+        </details>
+        <details class="faq-item">
+          <summary>这个预览会扣款吗？</summary>
+          <p>不会。所有方案按钮标注 Preview · 不会扣款；v0.1 无真结账。</p>
+        </details>
+        <details class="faq-item">
+          <summary>能用来监控另一半吗？</summary>
+          <p>产品主场景是约会安全与陌生人/防骗核实。关系信任话题仅在帮助中讨论，不作首屏案例。请遵守当地法律与平台规则，禁止骚扰与非法监视。</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <nav aria-label="页脚">
+      <a href="./about.html">关于</a>
+      <a href="./privacy.html">隐私</a>
+      <a href="./terms.html">条款</a>
+    </nav>
+    <p>© DeepSearch · Preview · 不会扣款 · 仅公开资料</p>
+  </footer>
+
+  <!-- Gate sheet G-01 -->
+  <div class="overlay" id="gateOverlay" role="dialog" aria-modal="true" aria-labelledby="gateTitle" hidden>
+    <div class="sheet">
+      <h3 id="gateTitle">导出需要选择方案</h3>
+      <p>v0.1 预览 — 不会扣款。选择方案壳后可继续。</p>
+      <div class="sheet-actions">
+        <button type="button" class="btn btn-primary btn-block" id="gatePrimary">查看方案</button>
+        <button type="button" class="btn btn-ghost btn-block" id="gateSecondary">暂不</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="./app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+/**
+ * DeepSearch ds2.* — D-02b three-layer CSS variables
+ * Primitive → Semantic → Component
+ * Spec: DeepSearch-D-02b · 2026-11-05
+ * DO NOT import lp.* / purple AI defaults / neon lime
+ */
+
+:root {
+  /* ── Primitive ── */
+  --ds2-p-paper-50: #FAFAF9;
+  --ds2-p-paper-100: #F5F5F4;
+  --ds2-p-paper-200: #E7E5E4;
+  --ds2-p-paper-300: #D6D3D1;
+  --ds2-p-stone-400: #A8A29E;
+  --ds2-p-stone-500: #78716C;
+  --ds2-p-stone-600: #57534E;
+  --ds2-p-stone-950: #0A0A0A;
+  --ds2-p-navy-50: #EEF2F6;
+  --ds2-p-navy-700: #0A2540;
+  --ds2-p-navy-800: #06182B;
+  --ds2-p-navy-900: #040F1A;
+  --ds2-p-teal-50: #F0FDFA;
+  --ds2-p-teal-700: #0F766E;
+  --ds2-p-amber-50: #FEF3C7;
+  --ds2-p-amber-700: #B45309;
+  --ds2-p-amber-800: #92400E;
+  --ds2-p-red-50: #FEF2F2;
+  --ds2-p-red-700: #B91C1C;
+  --ds2-p-white: #FFFFFF;
+
+  --ds2-p-space-1: 4px;
+  --ds2-p-space-2: 8px;
+  --ds2-p-space-3: 12px;
+  --ds2-p-space-4: 16px;
+  --ds2-p-space-5: 24px;
+  --ds2-p-space-6: 32px;
+  --ds2-p-space-7: 56px;
+  --ds2-p-space-8: 80px;
+
+  --ds2-p-radius-sm: 6px;
+  --ds2-p-radius-md: 8px;
+  --ds2-p-radius-lg: 12px;
+  --ds2-p-radius-pill: 999px;
+
+  --ds2-p-shadow-0: none;
+  --ds2-p-shadow-1: 0 1px 2px rgba(10, 10, 10, 0.04);
+  --ds2-p-shadow-focus: 0 0 0 3px rgba(10, 37, 64, 0.18);
+
+  --ds2-p-dur-fast: 150ms;
+  --ds2-p-dur-base: 220ms;
+  --ds2-p-dur-scan: 320ms;
+
+  --ds2-p-font-sans: Inter, "PingFang SC", "Noto Sans SC", system-ui, -apple-system, sans-serif;
+  --ds2-p-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* ── Semantic (ds2.color.* / ds2.type.* / ds2.space.*) ── */
+  --ds2-color-bg: var(--ds2-p-paper-50);
+  --ds2-color-surface: var(--ds2-p-white);
+  --ds2-color-surface-muted: var(--ds2-p-paper-100);
+  --ds2-color-ink: var(--ds2-p-stone-950);
+  --ds2-color-ink-secondary: var(--ds2-p-stone-600);
+  --ds2-color-ink-tertiary: var(--ds2-p-stone-500);
+  --ds2-color-border: var(--ds2-p-paper-200);
+  --ds2-color-border-strong: var(--ds2-p-paper-300);
+  --ds2-color-border-focus: var(--ds2-p-navy-700);
+  --ds2-color-accent: var(--ds2-p-navy-700);
+  --ds2-color-accent-hover: var(--ds2-p-navy-800);
+  --ds2-color-accent-soft: var(--ds2-p-navy-50);
+  --ds2-color-found: var(--ds2-p-teal-700);
+  --ds2-color-clear: var(--ds2-p-stone-500);
+  --ds2-color-uncertain: var(--ds2-p-amber-700);
+  --ds2-color-danger: var(--ds2-p-red-700);
+  --ds2-color-banner: var(--ds2-p-paper-100);
+  --ds2-color-preview: var(--ds2-p-amber-50);
+  --ds2-color-preview-ink: var(--ds2-p-amber-800);
+  --ds2-color-on-accent: var(--ds2-p-white);
+
+  --ds2-font-family: var(--ds2-p-font-sans);
+  --ds2-font-mono: var(--ds2-p-font-mono);
+
+  --ds2-type-display-size: 44px;
+  --ds2-type-display-lh: 52px;
+  --ds2-type-h1-size: 32px;
+  --ds2-type-h1-lh: 40px;
+  --ds2-type-h2-size: 24px;
+  --ds2-type-h2-lh: 32px;
+  --ds2-type-h3-size: 18px;
+  --ds2-type-h3-lh: 26px;
+  --ds2-type-body-size: 17px;
+  --ds2-type-body-lh: 28px;
+  --ds2-type-body-sm-size: 14px;
+  --ds2-type-body-sm-lh: 22px;
+  --ds2-type-caption-size: 12px;
+  --ds2-type-caption-lh: 18px;
+  --ds2-type-search-size: 18px;
+  --ds2-type-search-lh: 24px;
+
+  --ds2-space-1: var(--ds2-p-space-1);
+  --ds2-space-2: var(--ds2-p-space-2);
+  --ds2-space-3: var(--ds2-p-space-3);
+  --ds2-space-4: var(--ds2-p-space-4);
+  --ds2-space-5: var(--ds2-p-space-5);
+  --ds2-space-6: var(--ds2-p-space-6);
+  --ds2-space-7: var(--ds2-p-space-7);
+  --ds2-space-8: var(--ds2-p-space-8);
+
+  --ds2-radius-sm: var(--ds2-p-radius-sm);
+  --ds2-radius-md: var(--ds2-p-radius-md);
+  --ds2-radius-lg: var(--ds2-p-radius-lg);
+  --ds2-radius-pill: var(--ds2-p-radius-pill);
+
+  --ds2-elev-0: var(--ds2-p-shadow-0);
+  --ds2-elev-1: var(--ds2-p-shadow-1);
+  --ds2-elev-focus: var(--ds2-p-shadow-focus);
+
+  --ds2-motion-fast: var(--ds2-p-dur-fast);
+  --ds2-motion-base: var(--ds2-p-dur-base);
+  --ds2-motion-scan-row: var(--ds2-p-dur-scan);
+
+  --ds2-search-height-pc: 56px;
+  --ds2-search-height-mobile: 52px;
+  --ds2-cta-height: 56px;
+  --ds2-layout-hero-max: 680px;
+  --ds2-layout-content-max: 1080px;
+  --ds2-size-touch-min: 44px;
+
+  /* ── Component ── */
+  --ds2-search-bg: var(--ds2-color-surface);
+  --ds2-search-border: var(--ds2-color-border-strong);
+  --ds2-search-border-focus: var(--ds2-color-border-focus);
+  --ds2-search-radius: var(--ds2-radius-md);
+  --ds2-search-fs: var(--ds2-type-search-size);
+  --ds2-search-px: 16px;
+  --ds2-search-max: var(--ds2-layout-hero-max);
+
+  --ds2-btn-primary-bg: var(--ds2-color-accent);
+  --ds2-btn-primary-bg-hover: var(--ds2-color-accent-hover);
+  --ds2-btn-primary-fg: var(--ds2-color-on-accent);
+  --ds2-btn-secondary-bg: var(--ds2-color-surface);
+  --ds2-btn-secondary-border: var(--ds2-color-border-strong);
+  --ds2-btn-secondary-fg: var(--ds2-color-ink);
+  --ds2-btn-ghost-fg: var(--ds2-color-accent);
+  --ds2-btn-h: var(--ds2-cta-height);
+  --ds2-btn-radius: var(--ds2-radius-md);
+  --ds2-btn-disabled-opacity: 0.45;
+  --ds2-btn-px: 20px;
+
+  --ds2-chip-bg: var(--ds2-color-surface-muted);
+  --ds2-chip-bg-hover: var(--ds2-color-accent-soft);
+  --ds2-chip-fg: var(--ds2-color-ink-secondary);
+  --ds2-chip-radius: var(--ds2-radius-pill);
+  --ds2-chip-h: 32px;
+  --ds2-chip-px: 12px;
+
+  --ds2-pill-bg: var(--ds2-color-surface);
+  --ds2-pill-bg-selected: var(--ds2-color-accent-soft);
+  --ds2-pill-border: var(--ds2-color-border);
+  --ds2-pill-border-selected: var(--ds2-color-accent);
+  --ds2-pill-fg: var(--ds2-color-ink);
+  --ds2-pill-radius: var(--ds2-radius-pill);
+
+  --ds2-row-bg: var(--ds2-color-surface);
+  --ds2-row-bg-hover: var(--ds2-color-surface-muted);
+  --ds2-row-border: var(--ds2-color-border);
+  --ds2-row-radius: var(--ds2-radius-md);
+  --ds2-row-pad: 14px 16px;
+  --ds2-row-dot-found: var(--ds2-color-found);
+  --ds2-row-dot-clear: var(--ds2-color-clear);
+  --ds2-row-dot-uncertain: var(--ds2-color-uncertain);
+
+  --ds2-sheet-bg: var(--ds2-color-surface);
+  --ds2-sheet-overlay: rgba(10, 10, 10, 0.36);
+  --ds2-sheet-radius: var(--ds2-radius-lg);
+  --ds2-sheet-pad: 24px;
+  --ds2-sheet-max: 420px;
+
+  --ds2-toast-bg: var(--ds2-color-ink);
+  --ds2-toast-fg: var(--ds2-color-on-accent);
+  --ds2-toast-radius: var(--ds2-radius-md);
+  --ds2-toast-pad: 12px 16px;
+
+  --ds2-preview-bg: var(--ds2-color-preview);
+  --ds2-preview-fg: var(--ds2-color-preview-ink);
+  --ds2-preview-radius: var(--ds2-radius-pill);
+
+  --ds2-price-bg: var(--ds2-color-surface);
+  --ds2-price-border: var(--ds2-color-border);
+  --ds2-price-border-featured: var(--ds2-color-accent);
+  --ds2-price-radius: var(--ds2-radius-lg);
+  --ds2-price-pad: 24px;
+
+  --ds2-nav-h: 56px;
+  --ds2-nav-bg: rgba(250, 250, 249, 0.92);
+  --ds2-nav-border: var(--ds2-color-border);
+  --ds2-nav-link: var(--ds2-color-ink-secondary);
+  --ds2-nav-brand: var(--ds2-color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ds2-motion-fast: 0ms;
+    --ds2-motion-base: 0ms;
+    --ds2-motion-scan-row: 0ms;
+  }
+}
