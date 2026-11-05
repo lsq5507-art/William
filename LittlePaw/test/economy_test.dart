@@ -6,11 +6,12 @@ void main() {
     expect(Economy.freeStoriesPerUtcDay, 2);
     expect(Economy.freeRepliesPerUtcDay, 10);
     expect(Economy.freeLifetimeLifetimeImagesLifetime, 3);
-    expect(Economy.memberStoriesPerUtcDay, 4);
-    expect(Economy.memberRepliesPerUtcDay, 40);
+    // P-14: member caps slightly raised vs free.
+    expect(Economy.memberStoriesPerUtcDay, 5);
+    expect(Economy.memberRepliesPerUtcDay, 50);
     expect(Economy.memberImagesPer30Days, 30);
-    expect(Economy.priceMonthly, 9.90);
-    expect(Economy.priceYearly, 59.0);
+    expect(Economy.priceMonthly, 6.0);
+    expect(Economy.priceYearly, 48.0);
     expect(Economy.priceCard, 9.90);
     expect(Economy.priceBook, 19.90);
   });
@@ -35,7 +36,7 @@ void main() {
 
   test('member limits apply when simulated', () {
     final e = Economy(isMemberSimulated: true, utcDay: '2026-11-01');
-    expect(e.storiesLimit, 4);
-    expect(e.repliesLimit, 40);
+    expect(e.storiesLimit, 5);
+    expect(e.repliesLimit, 50);
   });
 }

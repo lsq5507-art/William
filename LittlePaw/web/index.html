@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -18,21 +18,267 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An AI pet companion with daily stories, on-device moments, and chat—try as a guest on the web. Simulated in-app economy; not a store purchase.">
+  <meta name="lp-build" content="ux-hotfix-web-v0.20">
+  <script>
+    /* LP-DEV-20: dual-domain same hotfix stamp; E01 experiment still host-gated in Dart */
+    (function () {
+      try {
+        var meta = document.querySelector('meta[name="lp-build"]');
+        if (!meta) return;
+        meta.setAttribute('content', 'ux-hotfix-web-v0.20');
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="canonical" href="https://little-paw-prod.web.app/">
+  <meta property="og:title" content="Little Paw — AI pet companion with its own day">
+  <meta property="og:description" content="An AI pet companion with daily stories, on-device moments, and chat—try as a guest on the web. Simulated in-app economy; not a store purchase.">
+  <meta property="og:url" content="https://little-paw-prod.web.app/">
+  <meta property="og:type" content="website">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="little_paw">
+  <meta name="apple-mobile-web-app-title" content="Little Paw">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>little_paw</title>
+  <title>Little Paw — AI pet companion with its own day</title>
   <link rel="manifest" href="manifest.json">
+  <style>
+    html, body { margin: 0; padding: 0; background: #F4F2EF; }
+    #seo-landing {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      overflow: auto;
+      background: #F4F2EF;
+      color: #1A1A1A;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Noto Sans SC", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    #seo-landing .lp-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+      box-sizing: border-box;
+    }
+    @media (min-width: 768px) {
+      #seo-landing .lp-wrap { padding: 32px 24px 64px; }
+    }
+    #seo-landing .lp-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    #seo-landing .lp-brand {
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0.01em;
+    }
+    #seo-landing .lp-pill {
+      font-size: 12px;
+      color: #6B6B6B;
+      background: #ECEAE6;
+      border-radius: 999px;
+      padding: 6px 12px;
+      white-space: nowrap;
+    }
+    #seo-landing h1 {
+      font-size: 28px;
+      line-height: 1.22;
+      font-weight: 700;
+      margin: 0 0 16px;
+      color: #1A1A1A;
+    }
+    @media (max-width: 480px) {
+      #seo-landing h1 { font-size: 24px; }
+    }
+    #seo-landing .lp-value {
+      font-size: 16px;
+      line-height: 1.5;
+      color: #1A1A1A;
+      margin: 0 0 20px;
+      font-weight: 400;
+    }
+    #seo-landing .lp-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      min-width: 44px;
+      padding: 12px 28px;
+      background: #1A1A1A;
+      color: #FFFFFF !important;
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      box-sizing: border-box;
+      border: 2px solid transparent;
+    }
+    #seo-landing .lp-cta:focus-visible {
+      outline: none;
+      border-color: #1A1A1A;
+      box-shadow: 0 0 0 2px #F4F2EF, 0 0 0 4px #1A1A1A;
+    }
+    #seo-landing .lp-cta:hover { filter: brightness(1.08); }
+    #seo-landing .lp-cta:active { filter: brightness(0.92); }
+    #seo-landing .lp-legal {
+      margin: 12px 0 0;
+      font-size: 12px;
+      color: #8A8A8A;
+      line-height: 1.4;
+    }
+    #seo-landing .lp-zh {
+      margin: 20px 0 0;
+      padding: 12px 14px;
+      background: #F3E0D4;
+      border-radius: 12px;
+      font-size: 13px;
+      color: #6B6B6B;
+      line-height: 1.45;
+    }
+    #seo-landing .lp-about {
+      margin: 28px 0 0;
+      font-size: 14px;
+      color: #6B6B6B;
+      line-height: 1.5;
+    }
+    #seo-landing .lp-about strong { color: #1A1A1A; font-weight: 600; }
+    #seo-landing h2 {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 36px 0 12px;
+      color: #1A1A1A;
+    }
+    #seo-landing .lp-faq {
+      border-top: 1px solid #E4E1DC;
+      background: #FFFFFF;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #E4E1DC;
+    }
+    #seo-landing details {
+      border-bottom: 1px solid #E4E1DC;
+    }
+    #seo-landing details:last-child { border-bottom: none; }
+    #seo-landing summary {
+      list-style: none;
+      cursor: pointer;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1A1A1A;
+      box-sizing: border-box;
+    }
+    #seo-landing summary::-webkit-details-marker { display: none; }
+    #seo-landing .lp-ans {
+      padding: 0 16px 16px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #6B6B6B;
+    }
+    #seo-landing .lp-ans .lp-lead {
+      color: #1A1A1A;
+      font-weight: 600;
+    }
+    #seo-landing .lp-cta-bottom { margin-top: 28px; }
+    #seo-landing footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #E4E1DC;
+      font-size: 12px;
+      color: #8A8A8A;
+      line-height: 1.5;
+    }
+    #seo-landing footer .lp-zh-foot { margin-top: 4px; }
+  </style>
 </head>
 <body>
+  <div id="seo-landing" role="main">
+    <div class="lp-wrap">
+      <div class="lp-top">
+        <div class="lp-brand">Little Paw</div>
+        <span class="lp-pill">Preview · test env</span>
+      </div>
+
+      <h1>An AI pet companion with its own day</h1>
+      <p class="lp-value">Keep a gentle daily life with your pet companion—stories, moments on this device, and chat. Guest try on the web; no account required to start.</p>
+
+      <a class="lp-cta" id="seo-cta" href="/?app=1" aria-label="Try Little Paw · 开始试用">Try Little Paw</a>
+      <p class="lp-legal">Guest try · simulated coins &amp; plans ≠ real payment</p>
+
+      <div class="lp-zh" lang="zh-Hans">
+        和它一起留下温柔日常：故事、本机动态与聊天。网页 Guest 即可开始，无需先注册。模拟金币/订阅 ≠ 真实付费。
+      </div>
+
+      <div class="lp-about">
+        <p><strong>Little Paw helps it keep a digital daily life on this device—a gentle, companion-first middle ground: more lived-in than a one-off photo, and not deep human social networking.</strong></p>
+        <p>This is not for dog-walking meetups, adding human friends, or owner icebreakers.</p>
+      </div>
+
+      <h2>FAQ</h2>
+      <div class="lp-faq">
+        <details open>
+          <summary>What is Little Paw?</summary>
+          <div class="lp-ans"><span class="lp-lead">Little Paw is an AI pet companion with its own day—stories, on-device moments, and chat.</span> It is a gentle, companion-first experience, not a meetup tool for owners.</div>
+        </details>
+        <details>
+          <summary>Can I try it without installing a store app?</summary>
+          <div class="lp-ans"><span class="lp-lead">Yes—you can try as a guest on the web.</span> Tap <strong>Try Little Paw</strong> to enter the current web experience on this preview host.</div>
+        </details>
+        <details>
+          <summary>Is this the official Little Paw website?</summary>
+          <div class="lp-ans"><span class="lp-lead">No. This host is a preview / test environment, not the official brand site.</span> We have not claimed a purchased custom domain such as littlepaw.pet here.</div>
+        </details>
+        <details>
+          <summary>Does Little Paw use real payments or an app-store listing?</summary>
+          <div class="lp-ans"><span class="lp-lead">No real store purchase or paid IAP in this preview.</span> Coins and subscription shells you may see are <strong>simulated</strong> for product testing and do not charge a real payment method.</div>
+        </details>
+        <details>
+          <summary>What can I do today on the web?</summary>
+          <div class="lp-ans"><span class="lp-lead">You can explore companion stories, on-device pet moments (including adding a real photo into its circle), chat, profile/about/legal entries, and simulated daily tasks or coins—labeled as simulation.</span> Features not listed here are not claimed as shipped.</div>
+        </details>
+        <details>
+          <summary>Is this a social network to meet other pet owners nearby?</summary>
+          <div class="lp-ans"><span class="lp-lead">No—Little Paw is not for owner meetups, adding human friends, or location-based matching.</span> It keeps a companion-first digital daily life on this device.</div>
+        </details>
+      </div>
+
+      <div class="lp-cta-bottom">
+        <a class="lp-cta" href="/?app=1" aria-label="Try Little Paw · 开始试用">Try Little Paw</a>
+      </div>
+
+      <footer>
+        <div>Preview / test environment · not the official brand site</div>
+        <div class="lp-zh-foot" lang="zh-Hans">预览 / 测试环境 · 非正式品牌站</div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      try {
+        var q = new URLSearchParams(window.location.search);
+        var path = (window.location.pathname || '/').replace(/\/+$/, '') || '/';
+        if (q.get('app') === '1' || q.get('app') === 'true' || path === '/app') {
+          var el = document.getElementById('seo-landing');
+          if (el) el.remove();
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <!--
     You can customize the "flutter_bootstrap.js" script.
     This is useful to provide a custom configuration to the Flutter loader

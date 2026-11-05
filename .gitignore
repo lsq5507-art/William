@@ -17,3 +17,14 @@ key.properties
 **/*.jks
 *.pem
 *.p12
+
+# Firebase local cache (not the public client configs)
+.firebase/
+
+# Generated Flutter iOS / Gradle / IDE
+**/ios/Flutter/ephemeral/
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+**/.gradle/
+*.iml
+.idea/

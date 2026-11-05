@@ -34,4 +34,20 @@ class Pet {
         ),
         createdAt: DateTime.parse(j['createdAt'] as String),
       );
+
+  Pet copyWith({
+    String? id,
+    String? name,
+    String? species,
+    PetType? type,
+    DateTime? createdAt,
+  }) =>
+      Pet(
+        id: id ?? this.id,
+        name: name ?? this.name,
+        species: species ?? this.species,
+        type: type ?? this.type,
+        createdAt: createdAt ?? this.createdAt,
+      );
 }
+

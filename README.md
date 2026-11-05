@@ -1,8 +1,13 @@
 # William
 
-本仓库托管 LittlePaw Flutter 应用，源码在 `LittlePaw/`。
+本分支是 **Little Paw ux-hotfix-web v0.20**（F1–F3）的可回滚快照。
 
-这是一份 **box 重建基线**，不是与较早 v12 演示字节级一致的副本。目标平台：iOS、Android、Web。
+- 分支：`release/little-paw-ux-hotfix-web-v0.20`
+- 标签：`lp-ux-hotfix-web-v0.20`
+- 线上：https://littlepaw.pet · https://little-paw-prod.web.app
+- 回滚：`git checkout lp-ux-hotfix-web-v0.20`
+
+源码在 `LittlePaw/`。这一支从 `cursor/add-littlepaw-flutter-9ca0` 拉出，保留 box 重建基线提交，再叠上 v0.20，不改写那条旧分支。
 
 ## 运行
 

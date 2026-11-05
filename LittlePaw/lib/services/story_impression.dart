@@ -1,18 +1,24 @@
 import 'dart:async';
 
-/// Viewport impression rules for SCR-03 / M7 (O3):
-/// - ratio >= 0.8 → complete immediately
-/// - 0 < ratio < 0.8 → dwell >= 2s while still in viewport
-/// - ratio == 0 (left viewport) → cancel unfinished dwell timer
-/// Never start dwell for cards that have not been measured in-viewport.
+/// Viewport impression rules for SCR-03 / M7 (O3) — defaults:
+/// - ratio >= [immediateRatio] (0.8) → complete immediately
+/// - ratio >= [dwellMinRatio] (legacy: any >0) → dwell >= [dwell] while in viewport
+/// - below band / left viewport → cancel unfinished dwell timer
+///
+/// LP-DEV-19 D-19 feed complete: immediateRatio=1.1, dwellMinRatio=0.5, dwell=1s.
 class StoryImpressionTracker {
   StoryImpressionTracker({
     this.dwell = const Duration(seconds: 2),
+    this.immediateRatio = 0.8,
+    this.dwellMinRatio = 0.0,
     this.onImpressed,
     this.now,
   });
 
   final Duration dwell;
+  final double immediateRatio;
+  /// 0 → any partial ratio > 0 starts dwell (legacy). Else require ratio >= this.
+  final double dwellMinRatio;
   final void Function(String id)? onImpressed;
   /// Injectable clock for tests.
   final DateTime Function()? now;
@@ -24,22 +30,25 @@ class StoryImpressionTracker {
   bool get isComplete => impressed.length >= 3;
   int get impressedCount => impressed.length;
 
+  bool _inDwellBand(double ratio) {
+    if (dwellMinRatio <= 0) return ratio > 0;
+    return ratio >= dwellMinRatio;
+  }
+
   /// Update visibility ratio for one story card (0.0–1.0+).
   void updateVisibility(String id, double ratio) {
     if (impressed.contains(id)) return;
 
-    if (ratio >= 0.8) {
+    if (ratio >= immediateRatio) {
       _cancelTimer(id);
       _mark(id);
       return;
     }
 
-    if (ratio > 0) {
-      // Partially visible: start dwell once; keep running while still in view.
+    if (_inDwellBand(ratio)) {
       dwellStarted.putIfAbsent(id, () => (now ?? DateTime.now)());
       _timers.putIfAbsent(id, () {
         return Timer(dwell, () {
-          // Only complete if still tracked as in-viewport dwell (timer not cancelled).
           if (!impressed.contains(id)) {
             _mark(id);
           }
@@ -48,7 +57,6 @@ class StoryImpressionTracker {
       return;
     }
 
-    // Not in viewport — cancel unfinished dwell.
     _cancelTimer(id);
     dwellStarted.remove(id);
   }

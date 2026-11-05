@@ -1,5 +1,6 @@
 import '../models/story.dart';
 import '../models/comment.dart';
+import 'pet_subject_media.dart';
 
 /// Scripted first-person stories & reply templates (no real LLM).
 class LifeScripts {
@@ -13,6 +14,9 @@ class LifeScripts {
         createdAt: now.subtract(const Duration(minutes: 3)),
         isOnboarding: true,
         isUnread: true,
+        imageUrl: PetSubjectMedia.assetForSeed('lp_onb1'),
+        aspect: StoryAspect.ratio43,
+        locationLabel: 'Cloud Town',
       ),
       Story(
         id: 'onb_2',
@@ -21,6 +25,9 @@ class LifeScripts {
         createdAt: now.subtract(const Duration(minutes: 2)),
         isOnboarding: true,
         isUnread: true,
+        imageUrl: PetSubjectMedia.assetForSeed('lp_onb2'),
+        aspect: StoryAspect.ratio43,
+        locationLabel: 'Cloud Town',
       ),
       Story(
         id: 'onb_3',
@@ -29,6 +36,9 @@ class LifeScripts {
         createdAt: now.subtract(const Duration(minutes: 1)),
         isOnboarding: true,
         isUnread: true,
+        imageUrl: PetSubjectMedia.assetForSeed('lp_onb3'),
+        aspect: StoryAspect.ratio43,
+        locationLabel: 'Cloud Town',
       ),
     ];
   }
@@ -62,6 +72,9 @@ class LifeScripts {
         createdAt: DateTime.now().toUtc().subtract(Duration(minutes: count - i)),
         isOnboarding: false,
         isUnread: true,
+        imageUrl: PetSubjectMedia.assetForSeed('lp_day_${utcDay}_$i'),
+        aspect: StoryAspect.ratio43,
+        locationLabel: 'Cloud Town',
       ));
     }
     return out;
@@ -126,6 +139,9 @@ class LifeScripts {
       createdAt: DateTime.now().toUtc(),
       isOnboarding: false,
       isUnread: true,
+      imageUrl: PetSubjectMedia.assetForSeed('lp_follow_$id'),
+      aspect: StoryAspect.ratio43,
+      locationLabel: 'Cloud Town',
     );
   }
 }

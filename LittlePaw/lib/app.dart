@@ -7,6 +7,7 @@ import 'screens/home_shell.dart';
 import 'screens/onboarding_stories.dart';
 import 'screens/welcome_screen.dart';
 import 'services/space_store.dart';
+import 'theme/lp_theme.dart';
 
 class LittlePawApp extends StatelessWidget {
   const LittlePawApp({super.key});
@@ -18,13 +19,7 @@ class LittlePawApp extends StatelessWidget {
         return MaterialApp(
           title: 'Little Paw',
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(
-              seedColor: const Color(0xFFC45C26),
-              brightness: Brightness.light,
-            ),
-            useMaterial3: true,
-          ),
+          theme: LpTheme.light(),
           home: _RootRouter(store: store),
         );
       },

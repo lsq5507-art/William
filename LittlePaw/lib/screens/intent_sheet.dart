@@ -8,6 +8,13 @@ import '../services/space_store.dart';
 /// SCR-08 / SCR-09 formal interest panel (M6). Does NOT unlock membership.
 Future<void> showFormalIntentSheet(BuildContext context, {String from = 'ui'}) {
   final store = context.read<SpaceStore>();
+  if (!store.intentEntryEnabled) {
+    final s = S(store.localeZh);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(s.get('intent.entry_paused_title'))),
+    );
+    return Future.value();
+  }
   store.eventLog.paywallIntentShown(from: from);
   store.save();
   return showModalBottomSheet<void>(
@@ -56,8 +63,8 @@ class _IntentSheetState extends State<_IntentSheet> {
             const SizedBox(height: 8),
             Text(
               store.localeZh
-                  ? '会员状态未变（模拟会员=${memberBefore ? "开" : "关"}）'
-                  : 'Membership unchanged (sim=$memberBefore)',
+                  ? '会员状态未变（当前=${memberBefore ? "已开通" : "未开通"}）'
+                  : 'Membership unchanged (now=${memberBefore ? "on" : "off"})',
               style: const TextStyle(fontSize: 12, color: Colors.black54),
             ),
             const SizedBox(height: 16),
@@ -70,12 +77,13 @@ class _IntentSheetState extends State<_IntentSheet> {
       );
     }
 
-    Widget opt(IntentChoice c, String key) {
+    Widget opt(IntentChoice c, String key, {String? subtitleKey}) {
       final isSel = selected == c;
       return ListTile(
         leading: Icon(isSel ? Icons.check_circle : Icons.circle_outlined,
             color: const Color(0xFFC45C26)),
         title: Text(s.get(key)),
+        subtitle: subtitleKey == null ? null : Text(s.get(subtitleKey)),
         selected: isSel,
         onTap: () => setState(() => selected = c),
       );
@@ -105,7 +113,7 @@ class _IntentSheetState extends State<_IntentSheet> {
                     color: const Color(0xFFE3F2FD),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: Text(store.localeZh ? '调研' : 'RESEARCH',
+                  child: Text(store.localeZh ? '意向' : 'INTEREST',
                       style: const TextStyle(fontSize: 11)),
                 ),
               ],
@@ -120,8 +128,15 @@ class _IntentSheetState extends State<_IntentSheet> {
               child: Text(s.get('intent.disclaimer'),
                   style: const TextStyle(fontSize: 13)),
             ),
+            // D2-03 S5 trust line
+            Padding(
+              padding: const EdgeInsets.only(top: 8, bottom: 4),
+              child: Text(s.get('intent.trust_local'),
+                  style: const TextStyle(fontSize: 12, color: Colors.black54)),
+            ),
             opt(IntentChoice.monthly, 'intent.opt.monthly'),
-            opt(IntentChoice.yearly, 'intent.opt.yearly'),
+            opt(IntentChoice.yearly, 'intent.opt.yearly',
+                subtitleKey: 'intent.opt.yearly_approx'),
             opt(IntentChoice.card, 'intent.opt.card'),
             opt(IntentChoice.book, 'intent.opt.book'),
             opt(IntentChoice.none, 'intent.opt.none'),
@@ -132,9 +147,8 @@ class _IntentSheetState extends State<_IntentSheet> {
                 border: const OutlineInputBorder(),
               ),
             ),
-            const SizedBox(height: 8),
-            Text(s.get('intent.footnote_demo'),
-                style: const TextStyle(fontSize: 11, color: Colors.black54)),
+            // D2-08: network.soft_fail reserved for future share/outbound hooks.
+            // Main paths stay local; do not block Feed/intent/export offline.
             const SizedBox(height: 12),
             FilledButton(
               onPressed: selected == null || submitting
