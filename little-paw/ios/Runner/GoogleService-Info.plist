@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyDg8svLKxSOV8EGDYG7cQXZIawQ1xJzaOM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>850518379973</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.littlepaw.littlePaw</string>
+	<key>PROJECT_ID</key>
+	<string>little-paw-prod</string>
+	<key>STORAGE_BUCKET</key>
+	<string>little-paw-prod.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:850518379973:ios:424fa272a6d7a75141cfac</string>
+</dict>
+</plist>
