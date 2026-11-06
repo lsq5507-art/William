@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "850518379973",
+    "project_id": "little-paw-prod",
+    "storage_bucket": "little-paw-prod.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850518379973:android:79b07817b2121d4641cfac",
+        "android_client_info": {
+          "package_name": "com.littlepaw.little_paw"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "850518379973-7bf9llsagssj3f2d634le596ht339lnv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkNzdPGj7DhP0QYRCdYJlI9xd7aZK_amI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "850518379973-7bf9llsagssj3f2d634le596ht339lnv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "850518379973-6f8aepeseat747pj3ourmve5b12akf0m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.littlepaw.littlePaw"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

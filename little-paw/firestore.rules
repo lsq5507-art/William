@@ -1,0 +1,46 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function emailLower() {
+      return request.auth.token.email == null
+        ? ''
+        : request.auth.token.email.lower();
+    }
+
+    // Compile-time default (LP-DEV-21) + optional ops/allowlist.emails
+    function inDefaultOpsAllowlist() {
+      return emailLower() == 'lsq5507@gmail.com';
+    }
+
+    function inFirestoreOpsAllowlist() {
+      return exists(/databases/$(database)/documents/ops/allowlist)
+        && get(/databases/$(database)/documents/ops/allowlist).data.keys().hasAny(['emails'])
+        && emailLower() in get(/databases/$(database)/documents/ops/allowlist).data.emails;
+    }
+
+    function isOpsAllowlisted() {
+      return signedIn() && (inDefaultOpsAllowlist() || inFirestoreOpsAllowlist());
+    }
+
+    // Allowlist config: authenticated can read (to gate UI); writes console-only.
+    match /ops/allowlist {
+      allow read: if signedIn();
+      allow write: if false;
+    }
+
+    // User root doc (Auth profile mirror) + subcollections.
+    match /users/{userId} {
+      allow read: if signedIn() && (request.auth.uid == userId || isOpsAllowlisted());
+      allow write: if signedIn() && request.auth.uid == userId;
+
+      match /{document=**} {
+        allow read: if signedIn() && (request.auth.uid == userId || isOpsAllowlisted());
+        allow write: if signedIn() && request.auth.uid == userId;
+      }
+    }
+  }
+}
