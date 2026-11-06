@@ -1,0 +1,55 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.symlinks/
+**/ios/Pods/
+.dart_tool/
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
+
+# Symbolication / obfuscation
+app.*.symbols
+app.*.map.json
+
+# Android Studio
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# Firebase Admin / service accounts only (client configs OK with API restrictions)
+*-firebase-adminsdk*.json
+serviceAccount*.json
+
+# Firebase local secrets / platform configs (keep out of public if needed)
+# Client configs are semi-public; still prefer not leaking admin keys.
+**/firebase_admin*.json
+serviceAccount*.json
+
+# Firebase local cache and signing material
+.firebase/
+android/key.properties
+android/local.properties
+*.jks
+*.keystore
